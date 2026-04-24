@@ -433,7 +433,7 @@ func (w *Workflow) NexusOperationInvocationData(
 }
 
 func (w *Workflow) WorkflowTypeTag() string {
-	return w.MSPointer.GetWorkflowTypeName()
+	return w.GetWorkflowTypeName()
 }
 
 func (w *Workflow) GetNexusCompletion(
