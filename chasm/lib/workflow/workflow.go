@@ -432,6 +432,10 @@ func (w *Workflow) NexusOperationInvocationData(
 	}, nil
 }
 
+func (w *Workflow) WorkflowTypeTag() string {
+	return w.MSPointer.GetWorkflowTypeName()
+}
+
 func (w *Workflow) GetNexusCompletion(
 	ctx chasm.Context,
 	requestID string,

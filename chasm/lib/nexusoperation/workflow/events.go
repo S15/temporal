@@ -218,8 +218,8 @@ func (d CompletedEventDefinition) Apply(ctx chasm.MutableContext, wf *chasmworkf
 
 	completeTime := event.GetEventTime().AsTime()
 	if err := nexusoperation.TransitionSucceeded.Apply(op, ctx, nexusoperation.EventSucceeded{
-		Result:       attrs.GetResult(),
 		CompleteTime: &completeTime,
+		Result:       attrs.GetResult(),
 	}); err != nil {
 		return err
 	}
@@ -331,7 +331,8 @@ func (d TimedOutEventDefinition) Apply(ctx chasm.MutableContext, wf *chasmworkfl
 	op := field.Get(ctx)
 
 	if err := nexusoperation.TransitionTimedOut.Apply(op, ctx, nexusoperation.EventTimedOut{
-		Failure: attrs.GetFailure().GetCause(),
+		Failure:     attrs.GetFailure().GetCause(),
+		TimeoutType: enumspb.TIMEOUT_TYPE_SCHEDULE_TO_CLOSE,
 	}); err != nil {
 		return err
 	}
